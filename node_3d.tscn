@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://cif2vnhdaveb0"]
+
+[ext_resource type="Script" path="res://cam.gd" id="1_hch4o"]
+[ext_resource type="Texture2D" uid="uid://myhsrig7h2pp" path="res://icon.svg" id="2_j8176"]
+[ext_resource type="FontFile" uid="uid://bfyd0hvsr55sy" path="res://Vividly-Regular.ttf" id="3_d4j4w"]
+[ext_resource type="Script" path="res://title text.gd" id="4_j4fbn"]
+[ext_resource type="Script" path="res://text.gd" id="5_eq4g0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ta28j"]
+font = ExtResource("3_d4j4w")
+font_size = 76
+outline_size = 5
+outline_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2.01, 1.54)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_hch4o")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-1097, -26)
+texture = ExtResource("2_j8176")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(927, 2)
+texture = ExtResource("2_j8176")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+top_level = true
+offset_left = -521.0
+offset_top = -400.0
+offset_right = -346.0
+offset_bottom = -113.0
+text = "Five 
+Nights 
+At
+Dog
+School"
+label_settings = SubResource("LabelSettings_ta28j")
+script = ExtResource("4_j4fbn")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 386.0
+offset_top = -324.0
+offset_right = 575.0
+offset_bottom = -261.0
+label_settings = SubResource("LabelSettings_ta28j")
+script = ExtResource("5_eq4g0")
