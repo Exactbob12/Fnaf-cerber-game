@@ -1,40 +1,41 @@
 extends Camera2D
-var speed = 4000 #SPEED OF ROTATION
-var time = 0 #CODED TIMER
-var frame :int= 0 #COOLDOWN REUSING OLD VAR
-var x = 0 #WALL SELECTION
-var mouse :int= get_global_mouse_position().x     #gets X coord of mouse
+
+var speed = 4000 # SPEED OF ROTATION
+var time = 0 # CODED TIMER
+var frame: int = 0 # COOLDOWN REUSING OLD VAR
+var x = 0 # WALL SELECTION
+var room = 0
+var roomcode = 0
+var antagPos = [-1, -1, -1, -1] # storing 4 antags Catber, Neuro, Evil, Slugber
+
+func _on_left_mouse_entered():
+	x = 1
+	time = 0
+
+func _on_center_mouse_entered():
+	x = 0
+	time = 0
+
+func _on_right_mouse_entered():
+	x = 2
+	time = 0
+
 func _process(delta):
 	if Global.scene == 1:
-		mouse = get_global_mouse_position().x   
-		frame = int(time)%2
-		if(frame==0): #CHECKS IF OFF COOLDOWN
-		#CHECKS IF GOES TO LEFT ROOM
-			if (mouse < -315):
-				if (mouse>-350):
-					x = 1
-					time = time+1
-		#CHECK IF GOES TO RIGHT ROOM
-			if (mouse < 700):
-				if (mouse > 660):
-					x = 2
-					time = time+1
-		#CHECKS IF GOES TO CENTRE
-		if (mouse<-567):
-			if(mouse>-600):
-				x= 0
-				time = time+1
-		if (mouse<950):
-			if(mouse>910):
-				x= 0
-				time = time+1
-	#MOVEMENTS
-	if (x == 1): #Left
-		position = position.move_toward(Vector2(-1000,-65),delta * speed)
-	if (x == 0): #centre
-		position = position.move_toward(Vector2(182,-65),delta * speed)
-	if (x==2): #Right
-		position = position.move_toward(Vector2(1364,-65), delta * speed)
-	#COOLDOWN TIMER ON MOVEMENT
-	if (frame != 0):
-		time = time+delta
+		frame = int(time) % 2
+		if frame == 0: # CHECKS IF OFF COOLDOWN
+			# MOVEMENTS
+			if x == 1: # Left
+				position = position.move_toward(Vector2(-2000, 0), delta * speed)
+			elif x == 0: # Center
+				position = position.move_toward(Vector2(0, 0), delta * speed)
+			elif x == 2: # Right
+				position = position.move_toward(Vector2(2000, 0), delta * speed)
+				
+			# COOLDOWN TIMER ON MOVEMENT
+			if frame != 0:
+				time += delta
+		else:
+			for i in range(antagPos.size()):
+				if antagPos[i] == room:
+					roomcode = roomcode + (10 ** (i + 2))
