@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cif2vnhdaveb0"]
+[gd_scene load_steps=8 format=3 uid="uid://cif2vnhdaveb0"]
 
 [ext_resource type="Script" path="res://cam.gd" id="1_hch4o"]
 [ext_resource type="Texture2D" uid="uid://myhsrig7h2pp" path="res://icon.svg" id="2_j8176"]
 [ext_resource type="FontFile" uid="uid://bfyd0hvsr55sy" path="res://Vividly-Regular.ttf" id="3_d4j4w"]
 [ext_resource type="Script" path="res://title text.gd" id="4_j4fbn"]
 [ext_resource type="Script" path="res://text.gd" id="5_eq4g0"]
+[ext_resource type="Script" path="res://Button.gd" id="6_yiavy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ta28j"]
 font = ExtResource("3_d4j4w")
@@ -54,3 +55,72 @@ offset_right = 575.0
 offset_bottom = -261.0
 label_settings = SubResource("LabelSettings_ta28j")
 script = ExtResource("5_eq4g0")
+
+[node name="Play" type="Button" parent="."]
+offset_left = -521.0
+offset_top = -1.0
+offset_right = -375.0
+offset_bottom = 73.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Play"
+flat = true
+alignment = 0
+script = ExtResource("6_yiavy")
+
+[node name="Settings" type="Button" parent="Play"]
+layout_mode = 0
+offset_top = 63.0
+offset_right = 218.0
+offset_bottom = 137.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Settings"
+flat = true
+alignment = 0
+script = ExtResource("6_yiavy")
+
+[node name="Exit" type="Button" parent="Play/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.394
+anchor_right = 2.394
+offset_left = -521.892
+offset_top = 57.0
+offset_right = -303.892
+offset_bottom = 131.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Exit"
+flat = true
+alignment = 0
+script = ExtResource("6_yiavy")
+
+[node name="Credits" type="Button" parent="Play/Settings/Exit"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 61.0
+offset_right = 217.0
+offset_bottom = 135.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Credits"
+flat = true
+alignment = 0
+script = ExtResource("6_yiavy")
