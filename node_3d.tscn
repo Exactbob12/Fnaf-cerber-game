@@ -28,7 +28,7 @@ texture = ExtResource("2_j8176")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(927, 2)
+position = Vector2(1097, 0)
 texture = ExtResource("2_j8176")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
