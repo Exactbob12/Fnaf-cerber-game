@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cif2vnhdaveb0"]
+[gd_scene load_steps=9 format=3 uid="uid://cif2vnhdaveb0"]
 
 [ext_resource type="Script" path="res://cam.gd" id="1_hch4o"]
 [ext_resource type="Texture2D" uid="uid://myhsrig7h2pp" path="res://icon.svg" id="2_j8176"]
@@ -6,12 +6,8 @@
 [ext_resource type="Script" path="res://title text.gd" id="4_j4fbn"]
 [ext_resource type="Script" path="res://text.gd" id="5_eq4g0"]
 [ext_resource type="Script" path="res://Button.gd" id="6_yiavy"]
-[ext_resource type="Texture2D" uid="uid://cn3bvb0ncavcw" path="res://plain-black-11.jpg" id="7_sogqi"]
-[ext_resource type="Texture2D" uid="uid://cwyvj1jrav7wp" path="res://Untitled2.png" id="8_a61fi"]
-[ext_resource type="Texture2D" uid="uid://droljj03es30u" path="res://Untitled1.png" id="9_141wo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80l2i"]
-size = Vector2(73, 1078)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ta28j"]
 font = ExtResource("3_d4j4w")
@@ -22,69 +18,22 @@ shadow_size = 0
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(2.01, 1.54)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kugd8"]
-size = Vector2(1324, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ydhhy"]
-atlas = ExtResource("7_sogqi")
-region = Rect2(480, 0, 480, 270)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d5ox8"]
-atlas = ExtResource("9_141wo")
-region = Rect2(0, 0, 793, 492)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jwlf2"]
-atlas = ExtResource("2_j8176")
-region = Rect2(0, 96, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8ro44"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ydhhy")
-}],
-"loop": true,
-"name": &"0",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_a61fi")
-}],
-"loop": true,
-"name": &"1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d5ox8")
-}],
-"loop": true,
-"name": &"2",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jwlf2")
-}],
-"loop": true,
-"name": &"title",
-"speed": 5.0
-}]
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("1_hch4o")
 
 [node name="Left" type="Area2D" parent="Camera2D"]
-position = Vector2(-924, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Left"]
 shape = SubResource("RectangleShape2D_80l2i")
 
+[node name="Center" type="Area2D" parent="Camera2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Center"]
+shape = SubResource("RectangleShape2D_80l2i")
+
 [node name="Right" type="Area2D" parent="Camera2D"]
-position = Vector2(923, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Right"]
 shape = SubResource("RectangleShape2D_80l2i")
@@ -98,6 +47,8 @@ texture = ExtResource("2_j8176")
 z_index = 1
 position = Vector2(1097, 0)
 texture = ExtResource("2_j8176")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
 top_level = true
@@ -191,36 +142,4 @@ flat = true
 alignment = 0
 script = ExtResource("6_yiavy")
 
-[node name="Cam trigger" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cam trigger"]
-position = Vector2(0, 484)
-shape = SubResource("RectangleShape2D_kugd8")
-
-[node name="Rooms" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
-scale = Vector2(4.2, 4.24667)
-sprite_frames = SubResource("SpriteFrames_8ro44")
-animation = &"2"
-
-[node name="C1" type="Button" parent="Rooms"]
-offset_left = 139.286
-offset_top = 82.4176
-offset_right = 167.286
-offset_bottom = 113.418
-scale = Vector2(0.46667, 0.396046)
-text = "C1"
-
-[node name="C2" type="Button" parent="Rooms"]
-offset_left = 160.476
-offset_top = 81.9466
-offset_right = 188.476
-offset_bottom = 112.947
-scale = Vector2(0.46667, 0.396046)
-text = "C2"
-
 [connection signal="mouse_entered" from="Camera2D/Left" to="Camera2D" method="_on_left_mouse_entered"]
-[connection signal="mouse_entered" from="Camera2D/Right" to="Camera2D" method="_on_right_mouse_entered"]
-[connection signal="mouse_shape_entered" from="Cam trigger" to="Camera2D" method="_on_cam_trigger_mouse_shape_entered"]
-[connection signal="pressed" from="Rooms/C1" to="Camera2D" method="_on_c_1_pressed"]
-[connection signal="pressed" from="Rooms/C2" to="Camera2D" method="_on_c_2_pressed"]
