@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cvmrp0hxh7g2g"
+path="res://.godot/imported/put down.wav-1163d68d8e7bf3f78eebd937bee99a08.sample"
+
+[deps]
+
+source_file="res://put down.wav"
+dest_files=["res://.godot/imported/put down.wav-1163d68d8e7bf3f78eebd937bee99a08.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

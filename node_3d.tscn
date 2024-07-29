@@ -1,11 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://cif2vnhdaveb0"]
+[gd_scene load_steps=37 format=3 uid="uid://cif2vnhdaveb0"]
 
 [ext_resource type="Script" path="res://cam.gd" id="1_hch4o"]
+[ext_resource type="Script" path="res://node.gd" id="1_n0apy"]
 [ext_resource type="Texture2D" uid="uid://myhsrig7h2pp" path="res://icon.svg" id="2_j8176"]
 [ext_resource type="FontFile" uid="uid://bfyd0hvsr55sy" path="res://Vividly-Regular.ttf" id="3_d4j4w"]
+[ext_resource type="AudioStream" uid="uid://djrqm18s5uwmv" path="res://blip3.wav" id="3_k5t5s"]
+[ext_resource type="Texture2D" uid="uid://deytweyqapt17" path="res://temp.png" id="3_rwfbv"]
 [ext_resource type="Script" path="res://title text.gd" id="4_j4fbn"]
-[ext_resource type="Script" path="res://text.gd" id="5_eq4g0"]
+[ext_resource type="Texture2D" uid="uid://jg5c3au0utq6" path="res://index.png" id="6_q218g"]
 [ext_resource type="Script" path="res://Button.gd" id="6_yiavy"]
+[ext_resource type="Texture2D" uid="uid://cn3bvb0ncavcw" path="res://plain-black-11.jpg" id="7_sogqi"]
+[ext_resource type="Texture2D" uid="uid://cwyvj1jrav7wp" path="res://Untitled2.png" id="8_a61fi"]
+[ext_resource type="Texture2D" uid="uid://droljj03es30u" path="res://Untitled1.png" id="9_141wo"]
+[ext_resource type="Script" path="res://scroll.gd" id="9_v8a8g"]
+[ext_resource type="AudioStream" uid="uid://cvmrp0hxh7g2g" path="res://put down.wav" id="10_v4sxl"]
+[ext_resource type="Script" path="res://Cam trigger.gd" id="10_yqoj5"]
+[ext_resource type="Script" path="res://timer.gd" id="13_usyxm"]
+[ext_resource type="Script" path="res://dev panel.gd" id="14_c2r2c"]
+[ext_resource type="Script" path="res://line.gd" id="15_2pbrs"]
+[ext_resource type="Texture2D" uid="uid://dvxaiwe5v2spc" path="res://image (10).png" id="15_5tlq6"]
+[ext_resource type="Script" path="res://Shift Reality Label.gd" id="16_5nqql"]
+[ext_resource type="Script" path="res://option1.gd" id="21_rxkpa"]
+[ext_resource type="Script" path="res://settingscheckbutton.gd" id="22_dnd7f"]
+[ext_resource type="VideoStream" path="res://static.ogv" id="23_l6t46"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kugd8"]
+size = Vector2(1324, 76)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80l2i"]
 size = Vector2(73, 1078)
@@ -19,20 +39,113 @@ shadow_size = 0
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(2.01, 1.54)
 
+[sub_resource type="Theme" id="Theme_ehpeo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydhhy"]
+atlas = ExtResource("7_sogqi")
+region = Rect2(480, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5ox8"]
+atlas = ExtResource("9_141wo")
+region = Rect2(0, 0, 793, 492)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwlf2"]
+atlas = ExtResource("2_j8176")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ro44"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydhhy")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_a61fi")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5ox8")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwlf2")
+}],
+"loop": true,
+"name": &"title",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ocxph"]
+font = ExtResource("3_d4j4w")
+font_size = 91
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmuqb"]
+bg_color = Color(0.129558, 0.129559, 0.129558, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Theme" id="Theme_s6ieg"]
+OptionButton/constants/outline_size = 0
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_alx1e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_84wbj"]
+font = ExtResource("3_d4j4w")
+font_size = 241
+
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_n0apy")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -3436.0
+offset_top = -542.0
+offset_right = 2920.0
+offset_bottom = 546.0
+mouse_filter = 2
+color = Color(0.16, 0.16, 0.25, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_hch4o")
+
+[node name="Cam trigger" type="Area2D" parent="Camera2D"]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("10_yqoj5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/Cam trigger"]
+position = Vector2(1.99997, 497)
+scale = Vector2(2.2, 1.16667)
+texture = ExtResource("3_rwfbv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Cam trigger"]
+position = Vector2(0, 500)
+shape = SubResource("RectangleShape2D_kugd8")
 
 [node name="Left" type="Area2D" parent="Camera2D"]
 position = Vector2(-924, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Left"]
-shape = SubResource("RectangleShape2D_80l2i")
-
-[node name="Center" type="Area2D" parent="Camera2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Center"]
 shape = SubResource("RectangleShape2D_80l2i")
 
 [node name="Right" type="Area2D" parent="Camera2D"]
@@ -41,19 +154,33 @@ position = Vector2(923, -3)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Right"]
 shape = SubResource("RectangleShape2D_80l2i")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
+[node name="cam pull up or put down" type="AudioStreamPlayer2D" parent="Camera2D"]
+stream = ExtResource("10_v4sxl")
+
+[node name="cam switch button" type="AudioStreamPlayer2D" parent="Camera2D"]
+stream = ExtResource("3_k5t5s")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Camera2D"]
+visible = false
+z_index = 1
+texture = ExtResource("6_q218g")
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+visible = false
+z_index = 1
+texture = ExtResource("15_5tlq6")
+
+[node name="placeholder" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(-1097, -26)
 texture = ExtResource("2_j8176")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="placeholder2" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(1097, 0)
 texture = ExtResource("2_j8176")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
-[node name="Label" type="Label" parent="."]
+[node name="Menu" type="Label" parent="."]
 top_level = true
 offset_left = -521.0
 offset_top = -400.0
@@ -68,19 +195,240 @@ label_settings = SubResource("LabelSettings_ta28j")
 script = ExtResource("4_j4fbn")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label2" type="Label" parent="."]
-offset_left = 386.0
-offset_top = -324.0
-offset_right = 575.0
-offset_bottom = -261.0
-label_settings = SubResource("LabelSettings_ta28j")
-script = ExtResource("5_eq4g0")
+[node name="continue" type="Button" parent="."]
+offset_left = -521.0
+offset_top = -1.0
+offset_right = -206.0
+offset_bottom = 73.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Continue"
+flat = true
+alignment = 0
+script = ExtResource("6_yiavy")
+
+[node name="selnight" type="Button" parent="."]
+offset_left = -522.0
+offset_top = 63.0
+offset_right = -207.0
+offset_bottom = 137.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Select Night"
+flat = true
+alignment = 0
+script = ExtResource("6_yiavy")
+
+[node name="Settings2" type="Button" parent="."]
+visible = false
+offset_left = -521.0
+offset_top = 475.0
+offset_right = -303.0
+offset_bottom = 549.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Night 9"
+flat = true
+alignment = 0
+script = ExtResource("9_v8a8g")
+
+[node name="Exit" type="Button" parent="Settings2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.394
+anchor_right = 2.394
+offset_left = -521.892
+offset_top = 57.0
+offset_right = -303.892
+offset_bottom = 131.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Night 10"
+flat = true
+alignment = 0
+
+[node name="Credits" type="Button" parent="Settings2/Exit"]
+layout_mode = 0
+offset_top = 61.0
+offset_right = 218.0
+offset_bottom = 135.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Night 11"
+flat = true
+alignment = 0
+
+[node name="Play3" type="Button" parent="."]
+visible = false
+offset_left = -521.0
+offset_top = 236.0
+offset_right = -344.0
+offset_bottom = 310.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Night 5"
+flat = true
+alignment = 0
+
+[node name="Settings" type="Button" parent="Play3"]
+layout_mode = 0
+offset_top = 63.0
+offset_right = 218.0
+offset_bottom = 137.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Night 6"
+flat = true
+alignment = 0
+
+[node name="Exit" type="Button" parent="Play3/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.394
+anchor_right = 2.394
+offset_left = -521.892
+offset_top = 57.0
+offset_right = -303.892
+offset_bottom = 131.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Night 7"
+flat = true
+alignment = 0
+
+[node name="Credits" type="Button" parent="Play3/Settings/Exit"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 61.0
+offset_right = 217.0
+offset_bottom = 135.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Night 8"
+flat = true
+alignment = 0
+
+[node name="Play2" type="Button" parent="."]
+visible = false
+offset_left = -522.0
+offset_right = -345.0
+offset_bottom = 74.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Night 1"
+flat = true
+alignment = 0
+
+[node name="Settings" type="Button" parent="Play2"]
+layout_mode = 0
+offset_top = 63.0
+offset_right = 218.0
+offset_bottom = 137.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Night 2"
+flat = true
+alignment = 0
+
+[node name="Exit" type="Button" parent="Play2/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.394
+anchor_right = 2.394
+offset_left = -521.892
+offset_top = 57.0
+offset_right = -303.892
+offset_bottom = 131.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Night 3"
+flat = true
+alignment = 0
+
+[node name="Credits" type="Button" parent="Play2/Settings/Exit"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 61.0
+offset_right = 217.0
+offset_bottom = 135.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Night 4"
+flat = true
+alignment = 0
 
 [node name="Play" type="Button" parent="."]
 offset_left = -521.0
 offset_top = -1.0
 offset_right = -375.0
 offset_bottom = 73.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_ehpeo")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_d4j4w")
@@ -97,6 +445,7 @@ layout_mode = 0
 offset_top = 63.0
 offset_right = 218.0
 offset_bottom = 137.0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_d4j4w")
@@ -117,6 +466,7 @@ offset_left = -521.892
 offset_top = 57.0
 offset_right = -303.892
 offset_bottom = 131.0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_d4j4w")
@@ -134,6 +484,7 @@ offset_left = -1.0
 offset_top = 61.0
 offset_right = 217.0
 offset_bottom = 135.0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_d4j4w")
@@ -145,6 +496,187 @@ flat = true
 alignment = 0
 script = ExtResource("6_yiavy")
 
+[node name="Rooms" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(4.2, 4.24667)
+sprite_frames = SubResource("SpriteFrames_8ro44")
+animation = &"2"
+
+[node name="C1" type="Button" parent="Rooms"]
+offset_left = 139.286
+offset_top = 82.4176
+offset_right = 167.286
+offset_bottom = 113.418
+scale = Vector2(0.46667, 0.396046)
+text = "C1"
+
+[node name="C2" type="Button" parent="Rooms"]
+offset_left = 160.476
+offset_top = 81.9466
+offset_right = 188.476
+offset_bottom = 112.947
+scale = Vector2(0.46667, 0.396046)
+text = "C2"
+
+[node name="time manager" type="Timer" parent="."]
+one_shot = true
+script = ExtResource("13_usyxm")
+
+[node name="Time label" type="Label" parent="time manager"]
+offset_left = -121.0
+offset_top = -531.0
+offset_right = 120.0
+offset_bottom = -465.0
+text = "(time)"
+label_settings = SubResource("LabelSettings_ocxph")
+
+[node name="dev panel" type="Panel" parent="."]
+visible = false
+offset_left = 348.0
+offset_top = -542.0
+offset_right = 960.0
+offset_bottom = 350.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xmuqb")
+script = ExtResource("14_c2r2c")
+
+[node name="Shift Reality3" type="LineEdit" parent="dev panel"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 239.0
+offset_right = 585.0
+offset_bottom = 270.0
+placeholder_text = "New Value Input"
+flat = true
+caret_blink = true
+script = ExtResource("15_2pbrs")
+
+[node name="Shift Reality Label3" type="Label" parent="dev panel"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 239.0
+offset_right = 236.0
+offset_bottom = 269.0
+theme_override_font_sizes/font_size = 21
+text = "scene"
+script = ExtResource("16_5nqql")
+
+[node name="devmenu label" type="Label" parent="dev panel"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 34.0
+offset_right = 401.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 41
+text = "DEV MENU"
+
+[node name="Shift Reality" type="LineEdit" parent="dev panel"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 131.0
+offset_right = 585.0
+offset_bottom = 162.0
+placeholder_text = "New Value Input"
+flat = true
+caret_blink = true
+script = ExtResource("15_2pbrs")
+
+[node name="Shift Reality Label" type="Label" parent="dev panel"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 131.0
+offset_right = 172.0
+offset_bottom = 161.0
+theme_override_font_sizes/font_size = 21
+text = "Shift Reality"
+script = ExtResource("16_5nqql")
+
+[node name="Shift Reality2" type="LineEdit" parent="dev panel"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 184.0
+offset_right = 585.0
+offset_bottom = 215.0
+placeholder_text = "New Value Input"
+flat = true
+caret_blink = true
+script = ExtResource("15_2pbrs")
+
+[node name="Shift Reality Label2" type="Label" parent="dev panel"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 184.0
+offset_right = 236.0
+offset_bottom = 214.0
+theme_override_font_sizes/font_size = 21
+text = "Dev menu "
+script = ExtResource("16_5nqql")
+
+[node name="Splash2" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("15_5tlq6")
+
+[node name="Splash1" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("6_q218g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -961.0
+offset_top = -542.0
+offset_right = 960.0
+offset_bottom = 549.0
+color = Color(0, 0, 0, 1)
+
+[node name="OptionButton" type="OptionButton" parent="."]
+visible = false
+offset_right = 470.0
+offset_bottom = 83.0
+theme = SubResource("Theme_s6ieg")
+button_group = SubResource("ButtonGroup_alx1e")
+script = ExtResource("21_rxkpa")
+
+[node name="Splashscreenoption" type="CheckButton" parent="."]
+offset_right = 374.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 41
+button_pressed = true
+text = "Starting splash screen"
+script = ExtResource("22_dnd7f")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+visible = false
+offset_left = -961.0
+offset_top = -542.0
+offset_right = 959.0
+offset_bottom = 546.0
+stream = ExtResource("23_l6t46")
+volume_db = -80.0
+autoplay = true
+loop = true
+
+[node name="Label" type="Label" parent="VideoStreamPlayer"]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 463.0
+offset_right = 1583.0
+offset_bottom = 636.0
+text = "(Death Text)"
+label_settings = SubResource("LabelSettings_84wbj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="VideoStreamPlayer"]
+position = Vector2(1025, 576)
+
+[connection signal="mouse_entered" from="Camera2D/Cam trigger" to="Camera2D" method="_on_cam_trigger_mouse_entered"]
 [connection signal="mouse_entered" from="Camera2D/Left" to="Camera2D" method="_on_left_mouse_entered"]
-[connection signal="mouse_entered" from="Camera2D/Center" to="Camera2D" method="_on_center_mouse_entered"]
 [connection signal="mouse_entered" from="Camera2D/Right" to="Camera2D" method="_on_right_mouse_entered"]
+[connection signal="pressed" from="Rooms/C1" to="Camera2D" method="_on_c_1_pressed"]
+[connection signal="pressed" from="Rooms/C2" to="Camera2D" method="_on_c_2_pressed"]
+[connection signal="text_submitted" from="dev panel/Shift Reality3" to="dev panel/Shift Reality3" method="_on_text_submitted"]
+[connection signal="text_submitted" from="dev panel/Shift Reality" to="dev panel/Shift Reality" method="_on_text_submitted"]
+[connection signal="text_submitted" from="dev panel/Shift Reality2" to="dev panel/Shift Reality2" method="_on_text_submitted"]

@@ -1,0 +1,235 @@
+[gd_scene load_steps=19 format=3 uid="uid://cif2vnhdaveb0"]
+
+[ext_resource type="Script" path="res://cam.gd" id="1_hch4o"]
+[ext_resource type="Texture2D" uid="uid://myhsrig7h2pp" path="res://icon.svg" id="2_j8176"]
+[ext_resource type="FontFile" uid="uid://bfyd0hvsr55sy" path="res://Vividly-Regular.ttf" id="3_d4j4w"]
+[ext_resource type="AudioStream" uid="uid://djrqm18s5uwmv" path="res://blip3.wav" id="3_k5t5s"]
+[ext_resource type="Script" path="res://title text.gd" id="4_j4fbn"]
+[ext_resource type="Script" path="res://text.gd" id="5_eq4g0"]
+[ext_resource type="Script" path="res://Button.gd" id="6_yiavy"]
+[ext_resource type="Texture2D" uid="uid://cn3bvb0ncavcw" path="res://plain-black-11.jpg" id="7_sogqi"]
+[ext_resource type="Texture2D" uid="uid://cwyvj1jrav7wp" path="res://Untitled2.png" id="8_a61fi"]
+[ext_resource type="Texture2D" uid="uid://droljj03es30u" path="res://Untitled1.png" id="9_141wo"]
+[ext_resource type="AudioStream" uid="uid://cvmrp0hxh7g2g" path="res://put down.wav" id="10_v4sxl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80l2i"]
+size = Vector2(73, 1078)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ta28j"]
+font = ExtResource("3_d4j4w")
+font_size = 76
+outline_size = 5
+outline_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2.01, 1.54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kugd8"]
+size = Vector2(1324, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydhhy"]
+atlas = ExtResource("7_sogqi")
+region = Rect2(480, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5ox8"]
+atlas = ExtResource("9_141wo")
+region = Rect2(0, 0, 793, 492)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwlf2"]
+atlas = ExtResource("2_j8176")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ro44"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydhhy")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_a61fi")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5ox8")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwlf2")
+}],
+"loop": true,
+"name": &"title",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_hch4o")
+
+[node name="Left" type="Area2D" parent="Camera2D"]
+position = Vector2(-924, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Left"]
+shape = SubResource("RectangleShape2D_80l2i")
+
+[node name="Right" type="Area2D" parent="Camera2D"]
+position = Vector2(923, -3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Right"]
+shape = SubResource("RectangleShape2D_80l2i")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
+stream = ExtResource("10_v4sxl")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Camera2D"]
+stream = ExtResource("3_k5t5s")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-1097, -26)
+texture = ExtResource("2_j8176")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(1097, 0)
+texture = ExtResource("2_j8176")
+
+[node name="Label" type="Label" parent="."]
+top_level = true
+offset_left = -521.0
+offset_top = -400.0
+offset_right = -346.0
+offset_bottom = -113.0
+text = "Five 
+Nights 
+At
+Dog
+School"
+label_settings = SubResource("LabelSettings_ta28j")
+script = ExtResource("4_j4fbn")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 386.0
+offset_top = -324.0
+offset_right = 575.0
+offset_bottom = -261.0
+label_settings = SubResource("LabelSettings_ta28j")
+script = ExtResource("5_eq4g0")
+
+[node name="Play" type="Button" parent="."]
+offset_left = -521.0
+offset_top = -1.0
+offset_right = -375.0
+offset_bottom = 73.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Play"
+flat = true
+alignment = 0
+script = ExtResource("6_yiavy")
+
+[node name="Settings" type="Button" parent="Play"]
+layout_mode = 0
+offset_top = 63.0
+offset_right = 218.0
+offset_bottom = 137.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Settings"
+flat = true
+alignment = 0
+script = ExtResource("6_yiavy")
+
+[node name="Exit" type="Button" parent="Play/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.394
+anchor_right = 2.394
+offset_left = -521.892
+offset_top = 57.0
+offset_right = -303.892
+offset_bottom = 131.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Exit"
+flat = true
+alignment = 0
+script = ExtResource("6_yiavy")
+
+[node name="Credits" type="Button" parent="Play/Settings/Exit"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 61.0
+offset_right = 217.0
+offset_bottom = 135.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_d4j4w")
+theme_override_font_sizes/font_size = 71
+action_mode = 0
+keep_pressed_outside = true
+text = "Credits"
+flat = true
+alignment = 0
+script = ExtResource("6_yiavy")
+
+[node name="Cam trigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cam trigger"]
+position = Vector2(0, 500)
+shape = SubResource("RectangleShape2D_kugd8")
+
+[node name="Rooms" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(4.2, 4.24667)
+sprite_frames = SubResource("SpriteFrames_8ro44")
+animation = &"2"
+
+[node name="C1" type="Button" parent="Rooms"]
+offset_left = 139.286
+offset_top = 82.4176
+offset_right = 167.286
+offset_bottom = 113.418
+scale = Vector2(0.46667, 0.396046)
+text = "C1"
+
+[node name="C2" type="Button" parent="Rooms"]
+offset_left = 160.476
+offset_top = 81.9466
+offset_right = 188.476
+offset_bottom = 112.947
+scale = Vector2(0.46667, 0.396046)
+text = "C2"
+
+[connection signal="mouse_entered" from="Camera2D/Left" to="Camera2D" method="_on_left_mouse_entered"]
+[connection signal="mouse_entered" from="Camera2D/Right" to="Camera2D" method="_on_right_mouse_entered"]
+[connection signal="mouse_entered" from="Cam trigger" to="Camera2D" method="_on_cam_trigger_mouse_entered"]
+[connection signal="pressed" from="Rooms/C1" to="Camera2D" method="_on_c_1_pressed"]
+[connection signal="pressed" from="Rooms/C2" to="Camera2D" method="_on_c_2_pressed"]
